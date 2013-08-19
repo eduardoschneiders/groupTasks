@@ -51,8 +51,6 @@ class Connection {
 		}
 
 		$sql = "INSERT INTO " . $objeto->table . "(" . $keys . ") VALUES (" . $values . ")"; 		//Query
-		echo $sql;
-		die();
 		return $this->runQuery($sql);
 	}
 
