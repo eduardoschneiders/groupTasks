@@ -4,8 +4,8 @@ class Connection {
 	
 	//properties
 	private $server 		= 'localhost';
-	private $user 			= 'user_OO';
-	private $pass 			= 'password';
+	private $user 			= 'rideSystem';
+	private $pass 			= 'rideSystem123';
 	private $DB 			= 'OO';
 	private $connection 	= NULL;
 	private $dataset 		= NULL;			
@@ -51,6 +51,8 @@ class Connection {
 		}
 
 		$sql = "INSERT INTO " . $objeto->table . "(" . $keys . ") VALUES (" . $values . ")"; 		//Query
+		echo $sql;
+		die();
 		return $this->runQuery($sql);
 	}
 
@@ -134,7 +136,7 @@ class Connection {
 				return $this->affectedLines;
 			}
 		}else
-			$this->handleErrors(__FILE__, __FUNCTION__, NULL, 'Comando SQL não infomado', FALSE);
+			$this->handleErrors(__FILE__, __FUNCTION__, NULL, 'Comando SQL nÃ£o infomado', FALSE);
 	}
 
 	public function returnData($type = NULL){
@@ -156,15 +158,15 @@ class Connection {
 	}
 
 	public function handleErrors($file = NULL, $routine = NULL, $numError= NULL, $msgError = NULL, $generateException = FALSE){
-		if($file == NULL) $file = 'Não informado';
-		if($routine == NULL) $routine = 'Não informado';
+		if($file == NULL) $file = 'NÃ£o informado';
+		if($routine == NULL) $routine = 'NÃ£o informado';
 		if($numError == NULL) $numError = mysql_errno($this->connection);
 		if($msgError == NULL) $msgError = mysql_error($this->connection);
 		$result = '
 			Ocorreu um erro com os seguintes detalhes: <br />
 			<strong>Arquivo:</strong> '.$file.'<br />
 			<strong>Rotina:</strong> '.$routine.'<br />
-			<strong>Código:</strong> '.$numError.'<br />
+			<strong>CÃ³digo:</strong> '.$numError.'<br />
 			<strong>Mensagem:</strong> '.$msgError;
 
 		if($generateException == FALSE)

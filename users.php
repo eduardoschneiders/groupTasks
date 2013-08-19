@@ -19,7 +19,7 @@
 				));
 
 				$client->insert($client);
-				$util->redirect('index.php');
+				// $util->redirect('index.php');
 			}
 
 			echo '
@@ -41,14 +41,14 @@
 				echo '<p>Registro deletado com sucesso</p>';
 			}
 
-			$query = new runQuery("SELECT * FROM clients");
+			$query = new runQuery("SELECT * FROM users");
 			while($client = $query->returnData('array')){
 				echo 'Name: ' . $client['name'] . ' ' . $client['lastName'] . ' ';
 				echo '<a href="?action=delete&id=' . $client['id'] . '">Deletar </a> <br />';
 			}
 
 		}else if($_GET['action'] == 'show'){
-			$query = new runQuery("SELECT * FROM clients");
+			$query = new runQuery("SELECT * FROM users");
 			while($client = $query->returnData('array')){
 				echo 'Name: ' . $client['name'] . ' ' . $client['lastName'] . '<br />';
 			}
