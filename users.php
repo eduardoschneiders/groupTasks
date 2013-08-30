@@ -18,7 +18,7 @@
 					'lastName' => $lastName
 				));
 
-				$client->insert($client);
+				$client->insert();
 				// $util->redirect('index.php');
 			}
 
@@ -46,6 +46,41 @@
 				echo 'Name: ' . $client['name'] . ' ' . $client['lastName'] . ' ';
 				echo '<a href="?action=delete&id=' . $client['id'] . '">Deletar </a> <br />';
 			}
+
+		}else if($_GET['action'] == 'update'){
+
+			if($_POST['id']){
+				$client = new client(array(
+					'name' => $_POST['name'],
+					'lastName' => $_POST['lastName']
+				));
+
+				$client->valuePK = $_POST['id'];
+				$client->update();
+
+				echo '<p>Registro atualizado com sucesso</p>';
+			}
+			if($_GET['id']){
+				$client = new client();
+				$client->getClient();
+				$teste = $client->selectAll();
+				while ($bla = mysql_fetch_array($teste)) {
+					echo "ohasdf";
+				}
+				$query = new runQuery("SELECT * FROM users WHERE id = " . $_GET['id']);
+				while($client = $query->returnData('array')){
+					echo '
+						<form method="post">
+							name: <input type="text" name="name" id="name" value="' . $client['name'] . '">
+							<input type="text" name="lastName" id="lastName" value="' . $client['lastName'] . '">
+							<input type="text" name="id" id="id" value="' . $client['id'] . '">
+							<input type="submit" value="Submit">
+							<input type="reset" value="clear">
+						</form>
+					';	
+				}
+			}
+
 
 		}else if($_GET['action'] == 'show'){
 			$query = new runQuery("SELECT * FROM users");

@@ -103,6 +103,7 @@ class Connection {
 	}
 
 	public function selectFields($object){
+
 		$i = 0;
 		foreach ($object->fields_values as $key => $value) { 		//Set VALUES and KEYS
 			$keys .= $key;
@@ -114,6 +115,7 @@ class Connection {
 
 
 		$sql = "SELECT " . $keys . " FROM " . $object->table;
+
 		if($object->extras_select)
 			$sql .= " ".$object->extras_select;
 	
