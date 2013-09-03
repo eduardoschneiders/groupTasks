@@ -36,7 +36,7 @@
 			if($_GET['id']){
 				$client = new client();
 				$client->valuePK = $_GET['id'];
-				$client->delete($client);
+				$client->delete();
 
 				echo '<p>Registro deletado com sucesso</p>';
 			}

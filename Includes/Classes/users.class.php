@@ -27,6 +27,10 @@
 			parent::update($this);
 		}
 
+		public function delete(){
+			parent::delete($this);
+		}
+
 		public function selectFields(){
 			return parent::selectFields($this);
 		}
