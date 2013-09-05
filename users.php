@@ -62,11 +62,12 @@
 			}
 			if($_GET['id']){
 				$client = new client();
-				$client->getClient();
-				$teste = $client->selectAll();
-				while ($bla = mysql_fetch_array($teste)) {
-					echo "ohasdf";
+				// $client->getClient();
+				$all_clients = $client->selectAll();
+				while ($bla = mysql_fetch_array($all_clients)) {
+					echo $bla['name'] . ' - ' . $bla['lastName'] . '<br />';
 				}
+
 				$query = new runQuery("SELECT * FROM users WHERE id = " . $_GET['id']);
 				while($client = $query->returnData('array')){
 					echo '
@@ -77,12 +78,15 @@
 							<input type="submit" value="Submit">
 							<input type="reset" value="clear">
 						</form>
-					';	
+					';
 				}
 			}
 
 
 		}else if($_GET['action'] == 'show'){
+			$client = new Client();
+			// $client->selectAll();
+
 			$query = new runQuery("SELECT * FROM users");
 			while($client = $query->returnData('array')){
 				echo 'Name: ' . $client['name'] . ' ' . $client['lastName'] . '<br />';

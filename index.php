@@ -2,13 +2,13 @@
 	// require_once "Includes/config.php";
 	// require_once "Includes/Classes/client.class.php";
 	// $client = new client();
-	
+
 
 	// $client->valuePK = 18;
 	// //$client->delete($client);
 	// $client->setValue('name', 'Eduardo');
 	// $client->setValue('lastName', 'Schneiders');
-	
+
 	// $client->insert($client);
 
 

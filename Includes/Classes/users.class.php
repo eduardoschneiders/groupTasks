@@ -16,7 +16,7 @@
 			}else{
 				$this->fields_values = $fields;
 			}
-			
+
 		}
 
 		public function insert(){
@@ -39,6 +39,6 @@
 			return parent::selectAll($this);
 		}
 
-		
+
 	}
 ?>

@@ -1,14 +1,14 @@
-<?php 
+<?php
 
 class Connection {
-	
+
 	//properties
 	private $server 		= 'localhost';
-	private $user 			= 'rideSystem';
-	private $pass 			= 'rideSystem123';
+	private $user 			= 'portal';
+	private $pass 			= '!tca321';
 	private $DB 			= 'OO';
 	private $connection 	= NULL;
-	private $dataset 		= NULL;			
+	private $dataset 		= NULL;
 	private $affectedLines 	= -1;
 
 
@@ -22,14 +22,14 @@ class Connection {
 	}
 
 	public function connect(){
-		$this->connection = mysql_connect($this->server, $this->user, $this->pass, TRUE) 
+		$this->connection = mysql_connect($this->server, $this->user, $this->pass, TRUE)
 		or die ($this->handleErrors(__FILE__, __FUNCTION__, mysql_errno(), mysql_error(), TRUE));
 		mysql_select_db($this->DB) or die ("erro");
 
-		mysql_query("SET NAMES 'utf8'");
-		mysql_query("SET character_set_connection=utf8");
-		mysql_query("SET character_set_client=utf8");
-		mysql_query("SET character_set_results=utf8");
+		mysql_query("SET NAMES 'iso-8859-1'");
+		mysql_query("SET character_set_connection=iso-8859-1");
+		mysql_query("SET character_set_client=iso-8859-1");
+		mysql_query("SET character_set_results=iso-8859-1");
 	}
 
 	public function insert($objeto){
@@ -38,7 +38,7 @@ class Connection {
 			$keys .= $key;
 
 			if(is_numeric($value))
-				$values .= $value; 							//if it's number, just include 
+				$values .= $value; 							//if it's number, just include
 			else
 				$values .= "'" . $value . "'"; 				//set " ' " in string
 
@@ -82,7 +82,7 @@ class Connection {
 		if(is_numeric($object->valuePK))
 			$restriction = " = " . $object->valuePK; 												//case NUMERIC, add '=' and the 'number'
 
-		else if (is_string($object->valuePK)) 						
+		else if (is_string($object->valuePK))
 			$restriction = " = '" . $object->valuePK . "'"; 										//case STRING, add 'value'
 
 		else if(is_array($object->valuePK))
@@ -118,7 +118,7 @@ class Connection {
 
 		if($object->extras_select)
 			$sql .= " ".$object->extras_select;
-	
+
 		return $this->runQuery($sql);
 	}
 
@@ -150,7 +150,7 @@ class Connection {
 			case 'object':
 				return mysql_fetch_object($this->dataset);
 				break;
-			
+
 			default:
 				return mysql_fetch_object($this->dataset);
 				break;
